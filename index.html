@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Как работают реактивные фреймворки">
+  <meta property="og:image" content="https://aleokheen.github.io/howtoreact/poster.jpg">
+  <title>Как работают реактивные фреймворки</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+  
+  <!-- Introducing block -->
+
+  <div id="introducing-block">
+    <div>
+      <h1>
+        Как работают реактивные фреймворки
+      </h1>
+      <hr>
+      <h2>
+        Пробежимся коротко о том, как работают
+        <b>React</b>, <b>Vue</b> и <b>Angular</b> на примере
+        <b><i>создания своего реактивного фреймворка</i></b>
+      </h2>
+    </div>
+  </div>
+
+  <!-- React block -->
+
+  <div id="react-block" class="__with-code">
+
+    <div class="description">
+      <h1>Начнём с простого</h1>
+    
+      <p>
+        Первое, с чего начинается документация любого реактивного
+        фреймворка &mdash; простой пример с текстовым полем,
+        параграфом и переменной, которая объединяет (синхронизирует)
+        текстовые значения в этих элементах.
+      </p>
+      <p>
+        Это реализуется проще простого: создаётся JavaScript объект,
+        где наша переменная со значением является свойством объекта.
+        На это свойство создаются геттеры и сеттеры.
+        Каждый геттер в большнитсве случаев тупо возвращает наше значение
+        и ничего с ним не делает. Сеттером же является функиция,
+        которая берёт элемент из DOM и меняет там значение.
+      </p>
+      <p>
+        Теперь, для того, чтобы изменить значение в блоке, мы просто
+        меняем значение свойства у нашего объекта. Согласитесь, чем-то
+        напоминает первые уроки из Vue.
+      </p>
+    </div>
+    
+    <div class="example-code">
+      <p class="codepen" data-height="100%" data-theme-id="dark"
+        data-default-tab="js,result" data-user="aleokheen" data-slug-hash="YzqwEjB"
+        style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+        data-pen-title="HowToReact / Реактивность">
+        <span>See the Pen <a href="https://codepen.io/aleokheen/pen/YzqwEjB">
+            HowToReact / Реактивность</a> by Alexander Aleokheen (<a
+            href="https://codepen.io/aleokheen">@aleokheen</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+      </p>
+      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+    </div>
+  </div>
+
+  <!-- Directives block -->
+
+  <div id="directives-block" class="__with-code">
+  
+    <div class="description">
+      <h1>Теперь директивы</h1>
+  
+      <p>
+        В любом MVC фреймворке есть такая штука, как директивы.
+        Это такие %username% штуки, куда скрипт вставляет информацию.
+      </p>
+      <p>
+        Директивы сами по себе работают очень просто; особенно -
+        если не требуется реактивность. Достаточно пройтись регулярным
+        выражением и заменить все %&lt;название_поля&gt;% на значения
+        переменных.
+      </p>
+      <p>
+        В реактивных фреймворках всё сложнее. После первого рендеринга
+        страницы (когда все директивы заменены на значения переменных),
+        мы уже не можем искать директивы регулярным выражением, т.к. они
+        уже все исчезли.
+      </p>
+      <p>
+        Здесь начинается одна из сложнейших, важнейших и основательных
+        вещей любого реактивного фреймворка - работа с DOM. Чтобы понять
+        представленный пример кода, необходимо знать особенности работы
+        с браузерским DOM (в частности знание того, что такое
+        HTML- или текстовая нода, как менять HTML-элементы местами и т.д.)
+      </p>
+      <p>
+        В представленном примере мы сделаем автоматическое создание геттеров
+        и сеттеров для нашего объекта. Работу с DOM вынесем в отдельную функцию
+        и будем вызывать её при изменении полей и при начальном рендереринге страницы.
+      </p>
+      <p>
+        Чтобы заменить директивы на нужные нам поля и, более того, сделать
+        это всё реактивным, нам потребуется взять все текстовые ноды страницы,
+        вырезать из них директивы и сделать их отдельными нодами.
+        Далее мы просто меняем весь текст в самой ноде при изменении полей. Регулярные выражения
+        используются только один раз при парсинге нод
+      </p>
+    </div>
+  
+    <div class="example-code">
+      <p class="codepen" data-height="100%" data-theme-id="dark"
+        data-default-tab="js,result" data-user="aleokheen" data-slug-hash="qBZbKvj"
+        style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+        data-pen-title="HowToReact / 2">
+        <span>See the Pen <a href="https://codepen.io/aleokheen/pen/qBZbKvj">
+            HotwoReact / 2</a> by Alexander Aleokheen (<a
+            href="https://codepen.io/aleokheen">@aleokheen</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+      </p>
+      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+    </div>
+  </div>
+
+  <!-- Arrays block -->
+  
+  <div id="arrays-block" class="__with-code">
+  
+    <div class="description">
+      <h1>Работа с массивами</h1>
+  
+      <p>
+        Увы, геттеры и сеттеры не умеют обрабатывать изменения в дочерних
+        массивах и объектах. Если дело касается массивов, в JavaScript можно
+        добавить геттеры/сеттеры в массив при помощи Proxy. Такое поможет
+        при изменении существующих элементов массивов, а вот на методы push,
+        unshift, pop и т.п такая штука не реагирует.
+      </p>
+      <p>
+        Что же делать в такой ситуации? Банально переписываем эти методы у массивов.
+        Не обязательно трогать прототип класса Array, достаточно прописать
+        локальные методы push/pop/unshift/shift в какой-то конкретный массив
+        и по каждому методу вызывать необходимые хуки. Таким образом массив
+        вновь становится реактивным.
+      </p>
+      <p>
+        Когда вы прогоняете ваш объект и автоматически ставите геттеры/сеттеры,
+        вы можете сделать проверку на тип данных и, если это массив,
+        прописать ему кастомные методы push/pop/unshift/shift. Если это объект,
+        вызываете функцию рекурсивно для каждого дочернего объекта.
+      </p>
+      <p>
+        Здесь пример упрощён. Нет текстовых директив и объекта с
+        геттерами/сеттерами. Здесь показан самый сок, который не запутает
+        вас и поможет понять, как многое можно творить, если хорошо
+        знать JavaScript
+      </p>
+    </div>
+  
+    <div class="example-code">
+      <p class="codepen" data-height="100%" data-theme-id="dark"
+        data-default-tab="js,result" data-user="aleokheen" data-slug-hash="LYNGJJY"
+        style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+        data-pen-title="LYNGJJY">
+        <span>See the Pen <a href="https://codepen.io/aleokheen/pen/LYNGJJY">
+            LYNGJJY</a> by Alexander Aleokheen (<a
+            href="https://codepen.io/aleokheen">@aleokheen</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+      </p>
+      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+    </div>
+  </div>
+
+  <!-- Conditions block -->
+  
+  <div id="conditions-block" class="__with-code">
+  
+    <div class="description">
+      <h1>Условные операторы (v-if)</h1>
+  
+      <p>
+        Показ-скрытые элементов - одна из самых легчайших вещей,
+        которую можно реализовать в реактивном фреймворке.
+      </p>
+      <p>
+        В представленном примере есть три текстовых блока. Два из них
+        спрятаны (у них не стоит display: none; их вообще нет в DOM).
+      </p>
+      <p>
+        Когда мы нажимаем на кнопку, чтобы скрыть блок,
+        мы просто заменяем его ноду на комментарий (или на что угодно),
+        а чтобы показать блок - меняем ноду с комментарием на сам блок
+        обратно.
+      </p>
+    </div>
+  
+    <div class="example-code">
+      <p class="codepen" data-height="100%" data-theme-id="dark"
+        data-default-tab="js,result" data-user="aleokheen" data-slug-hash="RwaabZZ"
+        style="height: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;"
+        data-pen-title="HowToReact / 3">
+        <span>See the Pen <a href="https://codepen.io/aleokheen/pen/RwaabZZ">
+            HowToReact / 3</a> by Alexander Aleokheen (<a
+            href="https://codepen.io/aleokheen">@aleokheen</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+      </p>
+      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+    </div>
+  </div>
+
+  <!-- Conclusion block -->
+
+  <div id="conclusion-block">
+    <h1>Заключение</h1>
+
+    <p>
+      Представленные выше примеры предоставлены для того, чтобы
+      немного расширить ваше представление о языке JavaScript и работе
+      с браузерским DOM. Любой реактивный фреймворк работает ровно по
+      предоставленным выше принципам, но, увы, не всё так просто,
+      как может показаться.
+    </p>
+
+    <p>
+      Разработать реактивный фреймворк действительно сложно. Если у меня
+      на создание этого лендинга вместе со всеми примерами ушёл ровно
+      день, то на создание того же React или Vue уйдёт гораздо больше
+      времени. В любом популярном реактивном фреймворке кроме основных
+      его возможностей, продуманы также оптимизация, удобство
+      работы в больших проектах (когда много кода), поддержка
+      широким кругом браузеров и т.д.
+    </p>
+
+    <p>
+      Реактивные фреймворки лучше всего подходят для написания
+      именно веб-приложений, где страницы полностью динамические
+      и зависят от разных условий. Если вы делаете какой-нибудь
+      лендинг или визитку, лучше всего воспользоваться
+      чистым JavaScript. Кстати данная страница написана на чистых
+      HTML/CSS/JS без единой библиотеки
+    </p>
+  </div>
+
+  <!-- About author block -->
+  
+  <div id="about-author-block">
+    <h1>Об авторе</h1>
+  
+    <a class="author" href="https://aleokheen.com">
+      <img src="https://aleokheen.com/images/aleokheen.jpg" alt="Александр Алёхин">
+      <span class="names">Александр Алёхин</span>
+      <span class="bio">Веб-разработчик (MERN)</span>
+    </a>
+
+    <div class="donate">
+      <div class="card">
+        <span>5368 2902 0065 0572</span>
+        <span>(RUB)</span>
+      </div>
+      <div class="card">
+        <span>5368 2900 6828 1825</span>
+        <span>(USD)</span>
+      </div>
+      <div class="description">
+        Поблагодарить автора
+      </div>
+    </div>
+  </div>
+</body>
+</html>

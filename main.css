@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font: 1em -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+}
+
+body {
+  overflow: auto;
+}
+
+/* === Basic HTML elements === */
+
+p {
+  line-height: 1.4em;
+}
+
+/* === Blocks === */
+
+body > div[id$="-block"] {
+  width: 100%;
+  max-width: 1200px;
+  margin: 200px auto;
+  padding: 0 50px;
+}
+
+@media(max-width: 768px) {
+
+  body > div[id$="-block"] {
+    margin: 100px auto;
+    padding: 0 20px;
+  }
+}
+
+body > div[id$="-block"]:first-child {
+  margin-top: 100px;
+}
+
+body > div[id$="-block"] > h1 {
+  margin: 0;
+  margin-bottom: 50px;
+  font-size: 32pt;
+  font-weight: lighter;
+  text-align: center;
+}
+
+body > div[id$="-block"].__with-code {
+  display: flex;
+  align-items: stretch;
+}
+
+body > div[id$="-block"].__with-code:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+@media(max-width: 680px) {
+
+  body > div[id$="-block"].__with-code {
+    flex-direction: column !important;
+  }
+}
+
+body > div[id$="-block"].__with-code .description,
+body > div[id$="-block"].__with-code .example-code {
+  flex: 1;
+  flex-shrink: 0;
+}
+
+body > div[id$="-block"].__with-code .description {
+  margin-right: 25px;
+}
+
+body > div[id$="-block"].__with-code:nth-child(odd) .description {
+  margin-right: 0;
+  margin-left: 25px;
+}
+
+body > div[id$="-block"].__with-code .example-code {
+  margin-left: 25px;
+}
+
+body > div[id$="-block"].__with-code:nth-child(odd) .example-code {
+  margin-left: 0;
+  margin-right: 25px;
+}
+
+@media(max-width: 680px) {
+  
+  body > div[id$="-block"].__with-code .description,
+  body > div[id$="-block"].__with-code .example-code {
+    margin: 0 !important;
+  }
+
+  body > div[id$="-block"].__with-code .example-code {
+    height: 300px;
+  }
+}
+
+body > div[id$="-block"].__with-code .example-code .cp_embed_wrapper {
+  height: 100%
+}
+
+/* === Introducing block === */
+
+#introducing-block {
+  display: flex;
+  max-width: 1024px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 100px 50px;
+}
+
+@media(max-width: 580px) {
+
+  #introducing-block {
+    height: auto;
+    padding-bottom: 0;
+  }
+}
+
+#introducing-block > div {
+  margin: auto;
+}
+
+#introducing-block h1,
+#introducing-block h2 {
+  margin: 0;
+  text-align: center;
+}
+
+#introducing-block h1 {
+  font-weight: bolder;
+  font-size: 48pt;
+}
+
+@media(max-width: 768px) {
+
+  #introducing-block h1 {
+    font-size: 24pt;
+  }
+}
+
+#introducing-block hr {
+  display: block;
+  width: 100px;
+  margin: 50px auto;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #000;
+}
+
+#introducing-block h2 {
+  margin-top: 30px;
+  font-weight: normal;
+  line-height: 1.4em;
+}
+
+@media(max-width: 768px) {
+
+  #introducing-block h2 {
+    font-size: 16pt;
+  }
+}
+
+/* === Conclusion block === */
+
+#conclusion-block {
+  max-width: 1024px;
+}
+
+/* === About author block === */
+
+#about-author-block {
+  max-width: 640px;
+  margin-bottom: 100px;
+}
+
+/* === Author === */
+
+#about-author-block .author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+#about-author-block .author img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #fff, 0 0 0 6px rgba(0, 0, 0, .1)
+}
+
+#about-author-block .author span {
+  display: block;
+}
+
+#about-author-block .author span.names {
+  font-size: 24pt;
+  margin-top: 20px;
+}
+
+#about-author-block .author span.bio {
+  /* font-size: 10pt; */
+  font-style: italic;
+  margin-top: 5px;
+  color: #888
+}
+
+/* === Donate === */
+
+#about-author-block .donate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  border-top: 1px solid #f2f2f2;
+  padding-top: 50px;
+}
+
+#about-author-block .donate .card {
+
+  margin-top: 10px;
+}
+
+#about-author-block .donate .card:first-child {
+  margin-top: 0;
+}
+
+#about-author-block .donate .card span:first-child {
+  font-size: 18pt;
+}
+
+#about-author-block .donate .description {
+  margin-top: 10px;
+  color: #888;
+  font-size: 10pt;
+}
